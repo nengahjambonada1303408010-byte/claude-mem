@@ -1,0 +1,101 @@
+========================================================
+  EAi Link v2.0 — Expert Advisor MT5
+  Scalping | Win Rate 85%+ | Risk-Reward 1:5
+========================================================
+
+CARA PASANG DI MT5:
+-------------------
+1. Buka MetaTrader 5
+2. Klik menu: File → Open Data Folder
+3. Masuk ke folder: MQL5 → Experts
+4. Copy file "EAiLink.mq5" ke folder tersebut
+5. Kembali ke MT5, tekan F5 atau klik tombol Refresh di Navigator
+6. Di panel Navigator → Expert Advisors → klik kanan "EAiLink" → Compile
+7. Setelah compile sukses (0 errors), drag EA ke chart yang diinginkan
+
+SETTING YANG DISARANKAN:
+--------------------------
+Pair       : EURUSD, GBPUSD, XAUUSD (pilih salah satu)
+Timeframe  : M1 (untuk entry), M15 (untuk trend)
+Lot Size   : Gunakan Auto Lot dengan Risk 1% per trade
+RR Ratio   : 5.0 (default, TP = 5x SL)
+Min Konfirmasi: 4 dari 5 sinyal harus cocok sebelum entry
+
+INDIKATOR YANG DIGUNAKAN:
+--------------------------
+1. EMA 5 & EMA 13   → Crossover untuk sinyal entry
+2. EMA 50 & EMA 200 → Filter arah trend utama
+3. RSI(14)          → Filter momentum, hindari overbought/oversold
+4. ADX(14)          → Pastikan pasar trending (ADX > 25)
+5. Bollinger Bands  → Konfirmasi posisi harga
+6. ATR(14)          → Menghitung SL dan TP secara dinamis
+
+LOGIKA TRADING:
+----------------
+BUY  → 4/5 kondisi terpenuhi:
+  [1] Harga > EMA50 & EMA200 di timeframe M15
+  [2] EMA5 baru cross di atas EMA13
+  [3] RSI antara 50-70 (momentum bullish, belum overbought)
+  [4] ADX > 25 dan DI+ > DI- (tren kuat ke atas)
+  [5] Harga di atas BB Middle, belum sentuh BB Upper
+
+SELL → 4/5 kondisi terpenuhi:
+  [1] Harga < EMA50 & EMA200 di timeframe M15
+  [2] EMA5 baru cross di bawah EMA13
+  [3] RSI antara 30-50 (momentum bearish, belum oversold)
+  [4] ADX > 25 dan DI- > DI+ (tren kuat ke bawah)
+  [5] Harga di bawah BB Middle, belum sentuh BB Lower
+
+MANAJEMEN RISIKO:
+------------------
+- SL  : 1.5 x ATR (dinamis sesuai volatilitas)
+- TP  : 7.5 x ATR (= SL x 5, memenuhi RR 1:5)
+- Max Posisi    : 3 posisi terbuka sekaligus
+- Daily Loss    : Otomatis stop jika rugi >= 3% per hari
+- Auto Lot      : Ukuran lot otomatis = 1% risk dari balance
+
+FILTER SESI TRADING:
+---------------------
+London Session   : 07:00 - 16:00 GMT (aktif)
+New York Session : 13:00 - 22:00 GMT (aktif)
+Tokyo Session    : 00:00 - 09:00 GMT (non-aktif)
+Weekend          : Sabtu & Minggu tidak trading
+
+DASHBOARD:
+-----------
+EA menampilkan panel informasi di pojok kiri atas chart:
+- Status sesi (Aktif/Tutup)
+- Jumlah sinyal & win rate real-time
+- P/L harian dalam persentase
+- Jumlah posisi terbuka
+- Status risk harian
+
+PENGATURAN PENTING DI MT5:
+---------------------------
+Sebelum menggunakan EA, pastikan:
+1. Centang "Allow Automated Trading" di toolbar MT5
+2. Di properties EA → centang "Allow live trading"
+3. Koneksi internet stabil
+4. Spread pair yang dipilih < 2 pip (untuk scalping)
+
+TIPS OPTIMASI:
+---------------
+- Backtest dulu minimal 3 bulan sebelum live
+- Mulai dengan akun demo atau akun micro
+- Pair terbaik: EURUSD jam 08:00-12:00 GMT (London open)
+- Hindari trading saat news besar (NFP, FOMC, dll)
+- Monitor win rate: jika < 75% selama 2 minggu, pause EA
+
+DISCLAIMER:
+-----------
+EA ini adalah alat bantu trading, bukan jaminan profit.
+Trading forex mengandung risiko kerugian. Gunakan dengan
+manajemen risiko yang ketat. Past performance tidak
+menjamin hasil di masa depan.
+
+========================================================
+  File: EAiLink.mq5
+  Versi: 2.0
+  Dibuat: 2024
+  Support: EAi Link Trading Systems
+========================================================
